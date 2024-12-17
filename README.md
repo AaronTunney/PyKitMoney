@@ -15,12 +15,14 @@ I am not an experienced Python programmer so my apologies to any professional Py
 > [!NOTE]
 > This is very much a _it works for me_ kind of hobby project. You will need a moderate amount of technical knowledge to problem solve any issues that arise.
 
+This project was partially inspired by this [cool weather display](https://blog.polarizedions.net/posts/2020-11-25-make-a-weather-display/). Many thanks to [PolarizedIons](https://github.com/PolarizedIons) for giving me the motivation that I needed.
+
 ## Shopping List
 
 What you need:
 
 1. A [Raspberry Pi Zero WH](https://thepihut.com/products/raspberry-pi-zero-wh-with-pre-soldered-header) (a Raspberry Pi Zero 2 will also work but you'll need the version with the header attached). This project isn't going to tax even a Pi Zero so you can save a couple of quid by going for the orignal model.
-1. An [e-paper screen](https://thepihut.com/products/2-13-e-paper-hat-for-raspberry-pi-250-x-122). I went for the Waveshare 2.13" E-Paper HAT+ as it attaches straight to the Raspberry Pi Zero's header and has several compatible cases available for it.
+1. An [e-paper screen](https://thepihut.com/products/2-13-e-paper-hat-for-raspberry-pi-250-x-122). I went for the Waveshare 2.13" E-Paper HAT+ as it attaches straight to the Raspberry Pi Zero's header and has several compatible cases available for it. If you're feeling fancy, colour displays are also available in this size and resolution.
 1. A [case](https://thepihut.com/products/pi-zero-case-for-waveshare-2-13-eink-display). There's also an option for [a case with the e-paper display already built in](https://thepihut.com/products/2-13-touchscreen-e-paper-display-case-for-raspberry-pi-zero). Both work well so it depends on what aesthetic you're going for or what's in stock.
 1. A [Raspberry Pi Zero power supply](https://thepihut.com/products/raspberry-pi-zero-uk-power-supply). Which one you go for is going to depend on your country and which Pi Zero you chose.
 1. A microSD card (I went with a Sandisk 32GB card - don't worry about getting the one with Pi OS pre-installed as we don't want the default version of Pi OS).
@@ -136,6 +138,12 @@ cd PyKitMoney/
 Two pieces of information need to be configured - the child's name and access token. Enter the child's name by opening `resources/settings.json` and entering your child's name. This name will be used both to find the Kite account and is displayed on the e-paper display.
 
 Next, open `resources/accesstoken.txt` and paste the access token you generated earlier. The project is now configured for your child!
+
+If you've bought anything other than V3 of the 2.13" e-paper display linked to earlier (Pi Hut helpfully specifies which version it currently has in stock), you will also need to modify the following line in `epaper_drawing.py`:
+
+```python
+epd = epaper.epaper('epd2in13_V3').EPD()    
+```
 
 The next step is to return to the root project directory and create a Python virtual environment. The virtual environment keeps all of PyKitMoney's depedencies separate from your main Python environment.
 
