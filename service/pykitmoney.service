@@ -1,0 +1,10 @@
+[Unit]
+Description=PyKitMoney
+
+[Service]
+Type=oneshot
+ExecStart=<full project path>/.venv/bin/python3 <full project path>/main.py
+TimeoutStopSec=120
+
+[Install]
+WantedBy=multi-user.target
