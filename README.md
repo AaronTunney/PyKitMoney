@@ -6,7 +6,7 @@ Display Starling Kite information on an e-paper display connected to a Raspberry
 
 We live in an increasingly cashless society and, moving with the times, my son has a Starling Kite account rather than physical pocket money. My dilemma was that he's only 7 and doesn't have his own smartphone to check his balance and transactions. Nothing a bit of Python and a Raspberry Pi can't sort out, right?
 
-Photo
+![A photo of a Raspberry Pi Zero running PyKitMoney](/docs/pizero.jpeg)
 
 This README goes through the steps to take this code and turn it into a (hopefully) working pocket money display. I've found that guides to anything Raspberry Pi go out of date quickly so be sure to consult other sources (the official Raspberry Pi website, Stack Overflow and Google) if anything doesn't make sense or doesn't work. 
 
@@ -184,7 +184,7 @@ Finally, PyKitMoney needs to be set up so that it will be periodically executed.
 An example PyKitMoney service is included in the `/service`. Open `pykitmoney.service` and look for a line like:
 
 ```bash
-ExecStart ExecStart=<full project path>/.venv/bin/python3 <full project path>/main.py
+ExecStart=<full project path>/.venv/bin/python3 <full project path>/main.py
 ```
 
 Enter the full path to your project (e.g. `/home/kate/development/PyKitMonkey`) in the two places where it's needed. If you wish, you can open `pykitmoney.timer` and change how often it runs. The default is once per hour.
