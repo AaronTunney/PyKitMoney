@@ -43,7 +43,7 @@ We're going to run the Raspberry Pi Zero in headless mode so these are redundent
 ### Use Rapsberry Pi Imager to flash the SD card
 
 1. Download [Raspberry Pi Imager](https://www.raspberrypi.com/software/) to the desktop OS of your choice.
-1. You can either choose the default Raspberry Pi OS or go with the Lite version. The Raspberry Pi Zero WH needs the 32-bit version whereas the Raspberry Pi Zero 2 can run the 64-bit version. After selecting your device, the imaging software should show you only compatible options.
+1. Choose the default Raspberry Pi OS. The Raspberry Pi Zero WH needs the 32-bit version whereas the Raspberry Pi Zero 2 can run the 64-bit version. After selecting your device, the imaging software should show you only compatible options. It should, it theory, be possible to use the lite version of Raspberry Pi OS but I've never gotten it to work with the required Python libraries.
 1. Click next and choose to edit settings.
 1. Enter all of the details - device hostname, login name, login password, WiFi details, enable ssh, timezone, etc.
 1. Click Save and away you go.
