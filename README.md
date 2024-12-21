@@ -8,7 +8,7 @@ We live in an increasingly cashless society and, moving with the times, my son h
 
 ![A photo of a Raspberry Pi Zero running PyKitMoney](/docs/pizero.jpeg)
 
-This README goes through the steps to take this code and turn it into a (hopefully) working pocket money display. I've found that guides to anything Raspberry Pi go out of date quickly so be sure to consult other sources (the official Raspberry Pi website, Stack Overflow and Google) if anything doesn't make sense or doesn't work. 
+This README goes through the steps to take this code and turn it into a (hopefully) working pocket money display. I've found that guides to anything Raspberry Pi go out of date quickly so be sure to consult other sources (the official Raspberry Pi website, Stack Overflow and Google) if anything doesn't make sense or doesn't work. If everything goes smoothly, total setup time should be 1-2 hours and cost about £50.
 
 I am not an experienced Python programmer so my apologies to any professional Python coders who read my code. 🙈
 
@@ -21,11 +21,11 @@ This project was partially inspired by this [cool weather display](https://blog.
 
 What you need:
 
-1. A [Raspberry Pi Zero WH](https://thepihut.com/products/raspberry-pi-zero-wh-with-pre-soldered-header) (a Raspberry Pi Zero 2 will also work but you'll need the version with the header attached). This project isn't going to tax even a Pi Zero so you can save a couple of quid by going for the orignal model.
+1. A [Raspberry Pi Zero 2 W (with header)](https://thepihut.com/products/raspberry-pi-zero-2?variant=43855634497731). A original [Raspberry Pi Zero WH](https://thepihut.com/products/raspberry-pi-zero-wh-with-pre-soldered-header) will also work - and save you about £1 - but takes significantly longer to get up and running due to its slower, single-core CPU. Once set up, there's no significant difference between the two.
 1. An [e-paper screen](https://thepihut.com/products/2-13-e-paper-hat-for-raspberry-pi-250-x-122). I went for the Waveshare 2.13" E-Paper HAT+ as it attaches straight to the Raspberry Pi Zero's header and has several compatible cases available for it. If you're feeling fancy, colour displays are also available in this size and resolution.
 1. A [case](https://thepihut.com/products/pi-zero-case-for-waveshare-2-13-eink-display). There's also an option for [a case with the e-paper display already built in](https://thepihut.com/products/2-13-touchscreen-e-paper-display-case-for-raspberry-pi-zero). Both work well so it depends on what aesthetic you're going for or what's in stock.
 1. A [Raspberry Pi Zero power supply](https://thepihut.com/products/raspberry-pi-zero-uk-power-supply). Which one you go for is going to depend on your country and which Pi Zero you chose.
-1. A microSD card (I went with a Sandisk 32GB card - don't worry about getting the one with Pi OS pre-installed as we don't want the default version of Pi OS).
+1. A microSD card (I went with a Sandisk 32GB card - don't worry about getting the one with Pi OS pre-installed as we can't use the pre-configured settings to run in headless mode).
 1. (Optional) A **down** right-angle micro USB adapter (otherwise the power supply cable pokes out of the top at a funny angle).
 1. A Kite account with Starling Bank. Hopefully this one is obvious? :)
 
@@ -162,6 +162,12 @@ You will notice that there's two requirements files in PyKitMoney's directory. T
 ```bash
 pip install -r requirements.txt 
 ```
+
+> [!NOTE]
+> If Pillow fails to install due to missing jpeg headers or library, try the following command:
+> ```bash
+> sudo apt install libjpeg-dev zlib1g-dev
+> ```
 
 You can now test using:
 
