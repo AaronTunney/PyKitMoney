@@ -4,7 +4,7 @@ Display Starling Kite information on an e-paper display connected to a Raspberry
 
 ## Introduction 
 
-We live in an increasingly cashless society and, moving with the times, my son has a Starling Kite account rather than physical pocket money. My dilemma was that he's only 7 and doesn't have his own smartphone to check his balance and transactions. Nothing a bit of Python and a Raspberry Pi can't sort out, right?
+We live in an increasingly cashless society and, moving with the times, my son has a [Starling Kite account](https://www.starlingbank.com/current-account/kite-debit-card-for-kids/) rather than physical pocket money. My dilemma was that he's only 7 and doesn't have his own smartphone to check his balance and transactions. Nothing a bit of Python and a Raspberry Pi can't sort out, right?
 
 ![A photo of a Raspberry Pi Zero running PyKitMoney](/docs/pizero.jpeg)
 
