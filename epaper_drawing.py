@@ -1,10 +1,10 @@
 """ Raspbery Pi drawing. """
 
-import utils
-import draw_utils
 import logging
 from PIL import Image, ImageDraw
 import PIL
+import utils
+import draw_utils
 
 if utils.is_raspberry_pi():
     import epaper
