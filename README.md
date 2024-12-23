@@ -36,7 +36,7 @@ What you don't need:
 * A microHDMI adapter
 * Any microUSB dongles or adapters
 
-We're going to run the Raspberry Pi Zero in headless mode so these are redundent.
+We're going to run the Raspberry Pi Zero in headless mode so these are redundant.
 
 ## Setting up the Raspberry Pi Zero
 
