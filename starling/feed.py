@@ -5,13 +5,13 @@ import pytz
 from .base_api import get
 
 def get_transactions_for_category(access_token, account_uid, category_uid):
-   """
-   Gets all transactions for space.
-   Requires the `transaction:read` OAuth scope.
-   """
-   query_items = { "changesSince": three_months_ago() }
-   response = get(access_token, "/api/v2/feed/account/" + account_uid + "/category/" + category_uid, query_items)
-   return response
+    """
+    Gets all transactions for space.
+    Requires the `transaction:read` OAuth scope.
+    """
+    query_items = { "changesSince": three_months_ago() }
+    response = get(access_token, "/api/v2/feed/account/" + account_uid + "/category/" + category_uid, query_items)
+    return response
 
 def three_months_ago():
     """ Gets the timedate three months ago. """

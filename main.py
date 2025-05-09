@@ -66,7 +66,15 @@ def main():
             draw_to_display(name, balance, latest_transactions, next_transfer)
 
 def draw_to_display(name, balance, transactions, next_transfer):
-    """ Draws the data to the 250x122 e-paper display."""
+    """ 
+    Draws the data to the 250x122 e-paper display.    
+    
+    Args:
+        name (str): The name of the space.
+        balance (str): The balance of the space.
+        transactions (list): A list of transaction strings.
+        next_transfer (str): The next transfer information.
+    """
     logging.info('Drawing %s %s %s %s', name, balance, transactions, next_transfer)
 
     if utils.is_raspberry_pi() is False:

@@ -12,7 +12,7 @@ def settings():
     path = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../resources/settings.json')
     
     # Open and load the JSON file
-    with open(path, 'r') as file:
+    with open(path, 'r', encoding="utf-8") as file:
         data = json.load(file)
 
     # Use the data (example: printing it)
