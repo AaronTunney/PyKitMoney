@@ -3,7 +3,7 @@ Description=PyKitMoney
 
 [Service]
 Type=oneshot
-ExecStart=<full project path>/.venv/bin/python3 <full project path>/main.py
+ExecStart=<full project path>/.venv/bin/python3 -m pykitmoney.main
 TimeoutStopSec=120
 
 [Install]

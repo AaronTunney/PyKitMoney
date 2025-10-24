@@ -163,3 +163,7 @@ cython_debug/
 .vscode/ 
 
 .DS_Store
+
+# PyKitMoney specific
+resources/accesstoken.txt
+resources/settings.json

@@ -1,5 +1,9 @@
 # PyKitMoney
 
+[![Tests](https://github.com/AaronTunney/PyKitMoney/workflows/Tests/badge.svg)](https://github.com/AaronTunney/PyKitMoney/actions)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 Display Starling Kite information on an e-paper display connected to a Raspberry Pi Zero.
 
 ## Introduction 
@@ -8,9 +12,9 @@ We live in an increasingly cashless society and, moving with the times, my son h
 
 ![A photo of a Raspberry Pi Zero running PyKitMoney](/docs/pizero.jpeg)
 
-This README goes through the steps to take this code and turn it into a (hopefully) working pocket money display. I've found that guides to anything Raspberry Pi go out of date quickly so be sure to consult other sources (the official Raspberry Pi website, Stack Overflow and Google) if anything doesn't make sense or doesn't work. 
+This README goes through the steps to take this code and turn it into a (hopefully) working pocket money display. I've found that guides to anything Raspberry Pi go out of date quickly so be sure to consult other sources (the official Raspberry Pi website, Stack Overflow and Google) if anything doesn't make sense or doesn't work.
 
-I am not an experienced Python programmer so my apologies to any professional Python coders who read my code. 🙈
+**Update 2025**: This project has been restructured to follow Python best practices with proper packaging, testing, and documentation. See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup.
 
 > [!NOTE]
 > This is very much a _it works for me_ kind of hobby project. You will need a moderate amount of technical knowledge to problem solve any issues that arise.
@@ -135,17 +139,30 @@ Once cloned, enter the project directory:
 cd PyKitMoney/
 ```
 
-Two pieces of information need to be configured - the child's name and access token. Enter the child's name by opening `resources/settings.json` and entering your child's name. This name will be used both to find the Kite account and is displayed on the e-paper display.
+Two pieces of information need to be configured - the child's name and access token. Create your configuration files from the examples:
+
+```bash
+cp resources/settings.json.example resources/settings.json
+cp resources/accesstoken.txt.example resources/accesstoken.txt
+```
+
+Edit `resources/settings.json` and enter your child's name:
+
+```json
+{
+    "name": "YourChildName"
+}
+```
 
 Next, open `resources/accesstoken.txt` and paste the access token you generated earlier. The project is now configured for your child!
 
-If you've bought anything other than V3 of the 2.13" e-paper display linked to earlier (Pi Hut helpfully specifies which version it currently has in stock), you will also need to modify the following line in `epaper_drawing.py`:
+If you've bought anything other than V3 of the 2.13" e-paper display linked to earlier (Pi Hut helpfully specifies which version it currently has in stock), you will also need to modify the following line in `pykitmoney/epaper_drawing.py`:
 
 ```python
 epd = epaper.epaper('epd2in13_V3').EPD()    
 ```
 
-The next step is to return to the root project directory and create a Python virtual environment. The virtual environment keeps all of PyKitMoney's depedencies separate from your main Python environment.
+The next step is to return to the root project directory and create a Python virtual environment. The virtual environment keeps all of PyKitMoney's dependencies separate from your main Python environment.
 
 ```bash
 python3 -m venv .venv
@@ -157,21 +174,23 @@ This may take 10 seconds on a Pi Zero so don't worry if the terminal output paus
 source .venv/bin/activate
 ```
 
-You will notice that there's two requirements files in PyKitMoney's directory. The default one contains all of the dependencies for the project. `requirements_dev.txt` contains only the cross-platform libaries so that the majority of the project can be written and debugged on a desktop machine running macOS, Windows or Linux. Install the default requirements:
+Install PyKitMoney with Raspberry Pi dependencies:
 
 ```bash
-pip install -r requirements.txt 
+pip install -e ".[pi]"
 ```
 
 You can now test using:
 
 ```bash
-python main.py 
+python -m pykitmoney.main
+# or simply:
+pykitmoney
 ```
 
-The command will run but error if you haven't entered an access token yet. If the access token is present and properly configured, you should see your child's account appear on the e-paper display! The drawing code is very basic. You may wish to open `epaper_drawing.py` and slightly tweak the layout to get all of the text to align and show at a sensible font size.
+The command will run but error if you haven't entered an access token yet. If the access token is present and properly configured, you should see your child's account appear on the e-paper display! The drawing code is very basic. You may wish to open `pykitmoney/epaper_drawing.py` and slightly tweak the layout to get all of the text to align and show at a sensible font size.
 
-You can exit the virtual enviroment by running the following command:
+You can exit the virtual environment by running the following command:
 
 ```bash
 deactivate
@@ -181,13 +200,13 @@ deactivate
 
 Finally, PyKitMoney needs to be set up so that it will be periodically executed. This is done by creating a systemd job.
 
-An example PyKitMoney service is included in the `/service`. Open `pykitmoney.service` and look for a line like:
+An example PyKitMoney service is included in the `/service` directory. Open `pykitmoney.service` and look for a line like:
 
 ```bash
-ExecStart=<full project path>/.venv/bin/python3 <full project path>/main.py
+ExecStart=<full project path>/.venv/bin/python3 -m pykitmoney.main
 ```
 
-Enter the full path to your project (e.g. `/home/kate/development/PyKitMonkey`) in the two places where it's needed. If you wish, you can open `pykitmoney.timer` and change how often it runs. The default is once per hour.
+Enter the full path to your project (e.g., `/home/kate/PyKitMoney`) in the place where it's needed. If you wish, you can open `pykitmoney.timer` and change how often it runs. The default is once per hour.
 
 You can now copy these files to the appropriate directory:
 
@@ -216,3 +235,32 @@ systemctl status pykitmoney
 ### Sit back and relax
 
 Enjoy several more years of your child not owning a smartphone. :)
+
+## Development
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup and guidelines.
+
+### Running Tests
+
+```bash
+pip install -e ".[dev]"
+pytest
+```
+
+### Project Structure
+
+```
+PyKitMoney/
+├── pykitmoney/           # Main package
+│   ├── starling/        # Starling Bank API modules
+│   ├── resources/       # Configuration and secrets
+│   ├── main.py          # Entry point
+│   └── ...
+├── tests/               # Test suite
+├── service/             # Systemd service files
+└── docs/                # Documentation
+```
+
+## License
+
+MIT License - see [LICENSE](LICENSE) file for details.
