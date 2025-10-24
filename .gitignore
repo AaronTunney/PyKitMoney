@@ -167,3 +167,6 @@ cython_debug/
 # PyKitMoney specific
 resources/accesstoken.txt
 resources/settings.json
+
+# Sphinx documentation
+docs/sphinx/build/
