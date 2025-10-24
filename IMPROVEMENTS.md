@@ -213,3 +213,71 @@ The old root-level Python files are preserved for reference, but users should mi
 ## Conclusion
 
 PyKitMoney now follows modern Python best practices while maintaining its original functionality. The project is well-structured, tested, documented, and ready for community contributions.
+
+## Sphinx Documentation Integration (Added 2025-01-24)
+
+### ✅ **Professional Documentation Generation**
+
+Integrated Sphinx for automatic, professional documentation generation with:
+
+#### New Features
+- **Auto-generated API Documentation** - Extracts from Python docstrings
+- **Read the Docs Theme** - Professional, mobile-friendly design
+- **Multiple Documentation Pages**:
+  - Installation guide
+  - Configuration guide
+  - Usage guide
+  - Troubleshooting guide
+  - Development guide
+  - Testing guide
+  - Complete API reference
+
+#### Technical Setup
+- Sphinx 8.2.3+ with Read the Docs theme
+- Napoleon extension for Google-style docstrings
+- Autodoc for API documentation generation
+- Intersphinx for cross-referencing
+- Search functionality built-in
+
+#### Build System
+```bash
+cd docs/sphinx
+make html
+# or
+sphinx-build -b html source build
+```
+
+#### Documentation Structure
+```
+docs/sphinx/
+├── source/           # ReStructuredText sources
+│   ├── *.rst        # 10+ documentation pages
+│   └── api/         # Auto-generated API docs
+├── build/           # Generated HTML
+├── Makefile         # Build commands
+└── README.md        # Documentation guide
+```
+
+#### Publishing Options
+- **Read the Docs**: Automatic builds on commit
+- **GitHub Pages**: Static hosting
+- **Local/Offline**: Portable HTML
+
+#### Benefits
+- Professional appearance
+- Searchable documentation
+- Auto-updates from code
+- Version-controlled
+- Easy to maintain
+- SEO-friendly
+
+#### Files Added
+- `docs/sphinx/` - Complete Sphinx setup (17 files)
+- `docs/sphinx/SPHINX_INTEGRATION.md` - Integration guide
+
+#### Dependencies Added to pyproject.toml
+- sphinx>=7.0.0
+- sphinx-rtd-theme>=2.0.0
+- sphinx-autodoc-typehints>=2.0.0
+
+**Result**: Professional, auto-generated, searchable documentation ready for publishing! 📚✨
